@@ -1,0 +1,41 @@
+name: Expo EAS Android Build
+
+on:
+  push:
+    branches:
+      - main  # Trigger the action only on pushes to the 'main' branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # This runs on an Ubuntu machine (no need for Windows-specific setup)
+
+    steps:
+    # Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    # Install EAS CLI
+    - name: Install EAS CLI
+      run: npm install -g eas-cli
+
+    # Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Log in to Expo
+    - name: Expo login
+      run: eas login --username ${{ secrets.EXPO_USERNAME }} --password ${{ secrets.EXPO_PASSWORD }}
+
+    # Build Android APK
+    - name: Build Android APK
+      run: eas build --platform android --profile preview --non-interactive
+
+    # Output the Android build URL
+    - name: Show Android Build URL
+      run: echo "Android preview: https://expo.dev/accounts/${{ secrets.EXPO_USERNAME }}/projects/<your-project-name>/builds/latest"
