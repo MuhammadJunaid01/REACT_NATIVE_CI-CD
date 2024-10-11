@@ -38,4 +38,4 @@ jobs:
 
     # Output the Android build URL
     - name: Show Android Build URL
-      run: echo "Android preview: https://expo.dev/accounts/${{ secrets.EXPO_USERNAME }}/projects/<your-project-name>/builds/latest"
+      run: echo "Android preview: https://expo.dev/accounts/${{ secrets.EXPO_USERNAME }}/projects/github-action/builds/latest"
