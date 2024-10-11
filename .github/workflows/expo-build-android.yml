@@ -32,9 +32,12 @@ jobs:
       - name: Expo login
         run: eas login --username muhammad_junaid --password y.UN@@&5Xu2hts&
 
+      #EAS  Build Configure  Android
+      - name: EAS Build Android Configure
+        run: eas build --platform android
       # Build Android APK
       - name: Build Android APK
-        run: eas build --platform android --profile preview --non-interactive
+        run: eas build --platform android --profile preview
 
       # Output the Android build URL
       - name: Show Android Build URL
